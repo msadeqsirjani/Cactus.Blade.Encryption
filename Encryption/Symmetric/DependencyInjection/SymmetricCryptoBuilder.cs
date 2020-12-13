@@ -1,0 +1,102 @@
+﻿using Cactus.Blade.Guard;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Cactus.Blade.Encryption.Symmetric.DependencyInjection
+{
+    /// <summary>
+    /// A builder used to register a <see cref="SymmetricCrypto"/>.
+    /// </summary>
+    public class SymmetricCryptoBuilder
+    {
+        private readonly List<SymmetricCredentialOptions> _credentialOptions = new List<SymmetricCredentialOptions>();
+
+        /// <summary>
+        /// Adds a credential with the default name to the builder.
+        /// </summary>
+        /// <param name="key">A symmetric key.</param>
+        /// <param name="algorithm">The <see cref="SymmetricAlgorithm"/> that will be used for a symmetric encryption or decryption operation.</param>
+        /// <param name="ivSize">The size of the initialization vector that is used to add entropy to encryption or decryption operations.</param>
+        /// <returns>The same <see cref="SymmetricCryptoBuilder"/>.</returns>
+        public SymmetricCryptoBuilder AddCredential(string key,
+            SymmetricAlgorithm algorithm = Credential.DefaultAlgorithm, ushort ivSize = Credential.DefaultIvSize)
+        {
+            Guard.Guard.Against.Null(key, nameof(key));
+
+            _credentialOptions.Add(new SymmetricCredentialOptions(null, Convert.FromBase64String(key), algorithm,
+                ivSize));
+
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a credential with the specified name to the builder.
+        /// </summary>
+        /// <param name="credentialName">The name of this credential.</param>
+        /// <param name="key">A symmetric key.</param>
+        /// <param name="algorithm">The <see cref="SymmetricAlgorithm"/> that will be used for a symmetric encryption or decryption operation.</param>
+        /// <param name="ivSize">The size of the initialization vector that is used to add entropy to encryption or decryption operations.</param>
+        /// <returns>The same <see cref="SymmetricCryptoBuilder"/>.</returns>
+        public SymmetricCryptoBuilder AddCredential(string credentialName, string key,
+            SymmetricAlgorithm algorithm = Credential.DefaultAlgorithm, ushort ivSize = Credential.DefaultIvSize)
+        {
+            Guard.Guard.Against.Null(key, nameof(key));
+
+            _credentialOptions.Add(new SymmetricCredentialOptions(credentialName, Convert.FromBase64String(key),
+                algorithm, ivSize));
+
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a credential with the default name to the builder.
+        /// </summary>
+        /// <param name="key">A symmetric key.</param>
+        /// <param name="algorithm">The <see cref="SymmetricAlgorithm"/> that will be used for a symmetric encryption or decryption operation.</param>
+        /// <param name="ivSize">The size of the initialization vector that is used to add entropy to encryption or decryption operations.</param>
+        /// <returns>The same <see cref="SymmetricCryptoBuilder"/>.</returns>
+        public SymmetricCryptoBuilder AddCredential(byte[] key,
+            SymmetricAlgorithm algorithm = Credential.DefaultAlgorithm, ushort ivSize = Credential.DefaultIvSize)
+        {
+            Guard.Guard.Against.Null(key, nameof(key));
+
+            _credentialOptions.Add(new SymmetricCredentialOptions(null, key, algorithm, ivSize));
+
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a credential with the specified name to the builder.
+        /// </summary>
+        /// <param name="credentialName">The name of this credential.</param>
+        /// <param name="key">A symmetric key.</param>
+        /// <param name="algorithm">The <see cref="SymmetricAlgorithm"/> that will be used for a symmetric encryption or decryption operation.</param>
+        /// <param name="ivSize">The size of the initialization vector that is used to add entropy to encryption or decryption operations.</param>
+        /// <returns>The same <see cref="SymmetricCryptoBuilder"/>.</returns>
+        public SymmetricCryptoBuilder AddCredential(string credentialName, byte[] key,
+            SymmetricAlgorithm algorithm = Credential.DefaultAlgorithm, ushort ivSize = Credential.DefaultIvSize)
+        {
+            Guard.Guard.Against.Null(key, nameof(key));
+
+            _credentialOptions.Add(new SymmetricCredentialOptions(credentialName, key, algorithm, ivSize));
+
+            return this;
+        }
+
+        /// <summary>
+        /// Creates an instance of <see cref="ICrypto"/> using the registered credentials.
+        /// </summary>
+        /// <param name="serviceProvider">
+        /// The <see cref="IServiceProvider"/> that retrieves the services required to create the <see cref="SymmetricCrypto"/>.
+        /// </param>
+        /// <returns>An instance of <see cref="SymmetricCrypto"/>.</returns>
+        public SymmetricCrypto Build(IServiceProvider serviceProvider)
+        {
+            var credentials = _credentialOptions.Select(option =>
+                new Credential(() => option.Key, option.Algorithm, option.IvSize, option.CredentialName)).ToList();
+
+            return new SymmetricCrypto(credentials);
+        }
+    }
+}
