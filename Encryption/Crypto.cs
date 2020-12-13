@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Cactus.Blade.Configuration;
+using Cactus.Blade.Configuration.ObjectFactory;
+using Cactus.Blade.Encryption.Async;
+using Immutable;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,10 +24,7 @@ namespace Cactus.Blade.Encryption
         /// Each method of the <see cref="Crypto"/> class ultimately uses the value
         /// of this property and calls one of its methods.
         /// </remarks>
-        public static ICrypto Current
-        {
-            get { return _current.Value; }
-        }
+        public static ICrypto Current => _current.Value;
 
         /// <summary>
         /// Sets the value of the <see cref="Current"/> property.
@@ -211,19 +212,16 @@ namespace Cactus.Blade.Encryption
 
         private static ICrypto GetDefaultCrypto()
         {
-            var cryptos = Config.Root.GetCompositeSection("rocklib_encryption", "rocklib.encryption").Create<List<ICrypto>>();
+            var crypts = Config.Root.GetCompositeSection("cactus.blade_encryption", "cactus.blade.encryption").Create<List<ICrypto>>();
 
-            if (cryptos == null || cryptos.Count == 0)
-            {
-                throw new InvalidOperationException("No crypto implementations found in config.  See the Readme.md file for details on how to setup the configuration.");
-            }
+            if (crypts == null || crypts.Count == 0)
+                throw new InvalidOperationException(
+                    "No crypto implementations found in config.  See the Readme.md file for details on how to setup the configuration.");
 
-            if (cryptos.Count == 1)
-            {
-                return cryptos[0];
-            }
+            if (crypts.Count == 1)
+                return crypts[0];
 
-            return new CompositeCrypto(cryptos);
+            return new CompositeCrypto(crypts);
         }
     }
 }
