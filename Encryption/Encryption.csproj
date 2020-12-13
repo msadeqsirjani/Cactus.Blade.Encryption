@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>Cactus.Blade.Encryption</AssemblyName>
+    <RootNamespace>Cactus.Blade.Encryption</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>1.2.0</Version>
+    <Authors>Mohammad Sadeq Sirjani</Authors>
+    <Product>Cactus</Product>
+    <Description>An easy-to-use, easy-to-configure crypto API.</Description>
+    <PackageReleaseNotes>An easy-to-use, easy-to-configure crypto API.</PackageReleaseNotes>
+    <NeutralLanguage>C#</NeutralLanguage>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageIcon>cactus.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/mohammadsadeqsirjani/Cactus.Blade.Encryption</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mohammadsadeqsirjani/Cactus.Blade.Encryption</RepositoryUrl>
+    <RepositoryType>https://github.com/mohammadsadeqsirjani/Cactus.Blade.Encryption</RepositoryType>
+    <Copyright>@CopyRight 2020</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\Image\cactus.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
