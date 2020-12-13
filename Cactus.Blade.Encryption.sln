@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{8D74D886-6E67-44F1-AE97-BBDC656CEB17}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{D11C5A19-D838-42E4-AD31-20C6D19FEE86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption", "Encryption\Encryption.csproj", "{9C1AB502-2698-4CFF-9ADE-53A9291DEA8B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C1AB502-2698-4CFF-9ADE-53A9291DEA8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C1AB502-2698-4CFF-9ADE-53A9291DEA8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C1AB502-2698-4CFF-9ADE-53A9291DEA8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C1AB502-2698-4CFF-9ADE-53A9291DEA8B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9C1AB502-2698-4CFF-9ADE-53A9291DEA8B} = {8D74D886-6E67-44F1-AE97-BBDC656CEB17}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB259FE8-5EB2-4C9D-B5E8-4280B68DACDA}
+	EndGlobalSection
+EndGlobal
