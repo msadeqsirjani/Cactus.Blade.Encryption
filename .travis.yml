@@ -1,10 +1,10 @@
 language: csharp
 mono: none
 dotnet: 2.1.502
-solution: Cactus.Blade.Threading.sln
+solution: Cactus.Blade.Encryption.sln
 install:
   - dotnet restore
 script:
-  - dotnet msbuild /p:Configuration=Release Cactus.Blade.Threading.sln
+  - dotnet msbuild /p:Configuration=Release Cactus.Blade.Encryption.sln
   - dotnet restore
-  - dotnet test Threading.Test/Threading.Test.csproj
+  - dotnet test Encryption.Test/Encryption.Test.csproj
