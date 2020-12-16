@@ -34,15 +34,15 @@ namespace Cactus.Blade.Encryption.FieldLevel
         /// Encrypts the fields, specified by XPath, that are contained in the given xml document string.
         /// </summary>
         /// <param name="xmlString">A string containing an xml document.</param>
-        /// <param name="xpathsToEncrypt">One or more XPaths of the fields to encrypt.</param>
+        /// <param name="xPathsToEncrypt">One or more XPaths of the fields to encrypt.</param>
         /// <param name="credentialName">
         /// The name of the credential to use for this encryption operation,
         /// or null to use the default credential.
         /// </param>
         /// <returns>The same xml document, except with the specified fields encrypted.</returns>
-        public static string EncryptXml(this string xmlString, IEnumerable<string> xpathsToEncrypt,
+        public static string EncryptXml(this string xmlString, IEnumerable<string> xPathsToEncrypt,
             string credentialName = null) =>
-            Crypto.Current.EncryptXml(xmlString, xpathsToEncrypt, credentialName);
+            Crypto.Current.EncryptXml(xmlString, xPathsToEncrypt, credentialName);
 
         /// <summary>
         /// Encrypts the fields, specified by XPath, that are contained in the given xml document string.
@@ -143,16 +143,16 @@ namespace Cactus.Blade.Encryption.FieldLevel
         /// Asynchronously encrypts the fields, specified by XPath, that are contained in the given xml document string.
         /// </summary>
         /// <param name="xmlString">A string containing an xml document.</param>
-        /// <param name="xpathsToEncrypt">One or more XPaths of the fields to encrypt.</param>
+        /// <param name="xPathsToEncrypt">One or more XPaths of the fields to encrypt.</param>
         /// <param name="credentialName">
         /// The name of the credential to use for this encryption operation,
         /// or null to use the default credential.
         /// </param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests.</param>
         /// <returns>A task that will contain the same xml document, except with the specified fields encrypted.</returns>
-        public static Task<string> EncryptXmlAsync(this string xmlString, IEnumerable<string> xpathsToEncrypt,
+        public static Task<string> EncryptXmlAsync(this string xmlString, IEnumerable<string> xPathsToEncrypt,
             string credentialName = null, CancellationToken cancellationToken = default) =>
-            Crypto.Current.EncryptXmlAsync(xmlString, xpathsToEncrypt, credentialName, cancellationToken);
+            Crypto.Current.EncryptXmlAsync(xmlString, xPathsToEncrypt, credentialName, cancellationToken);
 
         /// <summary>
         /// Asynchronously encrypts the fields, specified by XPath, that are contained in the given xml document string.
