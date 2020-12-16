@@ -158,8 +158,8 @@ namespace Cactus.Blade.Encryption
         /// Gets an instance of <see cref="IEncryptor"/> for the provided credential name.
         /// </summary>
         /// <param name="credentialName">
-        /// The name of the credential to use for this encryption operation,
-        /// or null to use the default credential.
+        ///     The name of the credential to use for this encryption operation,
+        ///     or null to use the default credential.
         /// </param>
         /// <returns>An object that can be used for encryption operations.</returns>
         public IEncryptor GetEncryptor(string credentialName)
