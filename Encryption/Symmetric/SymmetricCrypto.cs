@@ -63,8 +63,8 @@ namespace Cactus.Blade.Encryption.Symmetric
         /// <returns>The encrypted value as a string.</returns>
         public string Encrypt(string plainText, string credentialName)
         {
-            using (var encryptor = GetEncryptor(credentialName))
-                return encryptor.Encrypt(plainText);
+            using var encryptor = GetEncryptor(credentialName);
+            return encryptor.Encrypt(plainText);
         }
 
         /// <summary>
@@ -78,8 +78,8 @@ namespace Cactus.Blade.Encryption.Symmetric
         /// <returns>The decrypted value as a string.</returns>
         public string Decrypt(string cipherText, string credentialName)
         {
-            using (var decryptor = GetDecryptor(credentialName))
-                return decryptor.Decrypt(cipherText);
+            using var decryptor = GetDecryptor(credentialName);
+            return decryptor.Decrypt(cipherText);
         }
 
         /// <summary>
@@ -93,8 +93,8 @@ namespace Cactus.Blade.Encryption.Symmetric
         /// <returns>The encrypted value as a byte array.</returns>
         public byte[] Encrypt(byte[] plainText, string credentialName)
         {
-            using (var encryptor = GetEncryptor(credentialName))
-                return encryptor.Encrypt(plainText);
+            using var encryptor = GetEncryptor(credentialName);
+            return encryptor.Encrypt(plainText);
         }
 
         /// <summary>
@@ -108,16 +108,16 @@ namespace Cactus.Blade.Encryption.Symmetric
         /// <returns>The decrypted value as a byte array.</returns>
         public byte[] Decrypt(byte[] cipherText, string credentialName)
         {
-            using (var decryptor = GetDecryptor(credentialName))
-                return decryptor.Decrypt(cipherText);
+            using var decryptor = GetDecryptor(credentialName);
+            return decryptor.Decrypt(cipherText);
         }
 
         /// <summary>
         /// Gets an instance of <see cref="IEncryptor"/> for the provided credential name.
         /// </summary>
         /// <param name="credentialName">
-        /// The name of the credential to use for this encryption operation,
-        /// or null to use the default credential.
+        ///     The name of the credential to use for this encryption operation,
+        ///     or null to use the default credential.
         /// </param>
         /// <returns>An object that can be used for encryption operations.</returns>
         public IEncryptor GetEncryptor(string credentialName) =>
